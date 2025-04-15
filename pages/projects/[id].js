@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { getProjectById, getProjectTasks, updateTask, deleteTask, getUsers } from '../../utils/api';
+import Notification from '../../components/common/Notification';
+import { showNotification } from '../../store/notificationSlice';
+import { useDispatch } from 'react-redux';
 
 const ProjectDetail = () => {
   const router = useRouter();
@@ -12,6 +15,9 @@ const ProjectDetail = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [sortBy, setSortBy] = useState('dueDate');
+  const [filterStatus, setFilterStatus] = useState('all');
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (id) {
@@ -71,10 +77,18 @@ const ProjectDetail = () => {
         setTasks(tasks.map(task => 
           task._id === taskId ? response.data.data : task
         ));
+        dispatch(showNotification({
+          message: 'Task successfully updated!',
+          type: 'success'
+        }));
       }
     } catch (err) {
       console.error('Error updating task:', err);
       setError(err.response?.data?.message || 'Failed to update task');
+      dispatch(showNotification({
+        message: 'Failed to update task',
+        type: 'error'
+      }));
     }
   };
 
@@ -86,10 +100,40 @@ const ProjectDetail = () => {
     try {
       await deleteTask(id, taskId);
       setTasks(tasks.filter(task => task._id !== taskId));
+      dispatch(showNotification({
+        message: 'Task successfully deleted!',
+        type: 'success'
+      }));
     } catch (err) {
       console.error('Error deleting task:', err);
       setError(err.response?.data?.message || 'Failed to delete task');
+      dispatch(showNotification({
+        message: 'Failed to delete task',
+        type: 'error'
+      }));
     }
+  };
+
+  const getSortedAndFilteredTasks = () => {
+    let filteredTasks = [...tasks];
+    
+    // Filter by status
+    if (filterStatus !== 'all') {
+      filteredTasks = filteredTasks.filter(task => task.status === filterStatus);
+    }
+    
+    // Sort tasks
+    return filteredTasks.sort((a, b) => {
+      if (sortBy === 'dueDate') {
+        return new Date(a.dueDate || 0) - new Date(b.dueDate || 0);
+      } else if (sortBy === 'priority') {
+        const priorityOrder = { high: 1, medium: 2, low: 3 };
+        return priorityOrder[a.priority] - priorityOrder[b.priority];
+      } else if (sortBy === 'title') {
+        return a.title.localeCompare(b.title);
+      }
+      return 0;
+    });
   };
 
   if (loading && !project) {
@@ -169,11 +213,34 @@ const ProjectDetail = () => {
           </div>
 
           <div className="mt-8">
-            <h2 className="text-lg font-medium text-gray-900 mb-4">Tasks</h2>
-            {tasks.length > 0 ? (
+            <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
+              <h2 className="text-lg font-medium text-gray-900">Tasks</h2>
+              <div className="flex space-x-2 mt-2 sm:mt-0">
+                <select
+                  value={filterStatus}
+                  onChange={(e) => setFilterStatus(e.target.value)}
+                  className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                >
+                  <option value="all">All Statuses</option>
+                  <option value="pending">Pending</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="completed">Completed</option>
+                </select>
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+                >
+                  <option value="dueDate">Sort by Due Date</option>
+                  <option value="priority">Sort by Priority</option>
+                  <option value="title">Sort by Title</option>
+                </select>
+              </div>
+            </div>
+            {getSortedAndFilteredTasks().length > 0 ? (
               <div className="bg-white shadow overflow-hidden sm:rounded-md">
                 <ul className="divide-y divide-gray-200">
-                  {tasks.map((task) => (
+                  {getSortedAndFilteredTasks().map((task) => (
                     <li key={task._id}>
                       <div className="px-4 py-4 sm:px-6">
                         <div className="flex items-center justify-between">

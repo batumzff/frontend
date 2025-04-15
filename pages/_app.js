@@ -5,6 +5,7 @@ import Layout from '../components/layout/Layout';
 import { store } from '../store';
 import { checkAuth, setUser } from '../store/authSlice';
 import '../styles/globals.css';
+import Notification from '../components/common/Notification';
 
 // Auth checker component
 function AuthChecker({ children }) {
@@ -49,6 +50,7 @@ function MyApp({ Component, pageProps }) {
             <Component {...pageProps} />
           </Layout>
         )}
+        <Notification />
       </AuthChecker>
     </Provider>
   );

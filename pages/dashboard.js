@@ -8,6 +8,8 @@ const Dashboard = () => {
   const [projectsList, setProjectsList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [sortBy, setSortBy] = useState('dueDate');
+  const [filterStatus, setFilterStatus] = useState('all');
 
   useEffect(() => {
     const fetchProjects = async () => {
