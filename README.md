@@ -4,7 +4,7 @@ Bu proje, UVW Mühendislik için geliştirilmiş görev yönetimi sisteminin fro
 
 ## Canlı Demo
 
-Frontend uygulaması şu adreste çalışmaktadır: [https://uvw-smoky.vercel.app](https://uvw-smoky.vercel.app)
+Frontend uygulaması şu adreste çalışmaktadır: [https://frontend-ecru-phi-68.vercel.app/](https://frontend-ecru-phi-68.vercel.app/)
 
 ## Kullanılan Teknolojiler
 
@@ -103,7 +103,7 @@ Proje, modern bir frontend mimarisine sahiptir:
 
 3. `.env.local` dosyasını oluşturun:
    ```
-   NEXT_PUBLIC_API_URL=http://localhost:8080/api
+   NEXT_PUBLIC_API_URL=https://backend-fv1y.onrender.com/api
    ```
 
 4. Geliştirme sunucusunu başlatın:
