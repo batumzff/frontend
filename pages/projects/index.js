@@ -13,12 +13,10 @@ const Projects = () => {
     const fetchProjects = async () => {
       try {
         const response = await getAllProjects();
-        console.log('API Response:', response);
         
         if (response.data && response.data.data && Array.isArray(response.data.data)) {
           setProjectsList(response.data.data);
         } else {
-          console.warn('Unexpected API response structure:', response.data);
           setProjectsList([]);
         }
       } catch (err) {

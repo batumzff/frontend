@@ -28,9 +28,7 @@ const Login = () => {
     setError('');
 
     try {
-      console.log('Attempting login with:', formData);
       const resultAction = await dispatch(login(formData)).unwrap();
-      console.log('Login successful:', resultAction);
       router.push('/dashboard');
     } catch (err) {
       console.error('Login error:', err);

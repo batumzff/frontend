@@ -37,9 +37,7 @@ const Register = () => {
 
     try {
       const { confirmPassword, ...userData } = formData;
-      console.log('Attempting registration with:', userData);
       const resultAction = await dispatch(register(userData)).unwrap();
-      console.log('Registration successful:', resultAction);
       router.push('/dashboard');
     } catch (err) {
       console.error('Registration error:', err);

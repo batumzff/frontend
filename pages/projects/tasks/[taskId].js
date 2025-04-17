@@ -44,7 +44,6 @@ const TaskDetail = () => {
   const fetchTask = async (projectId) => {
     try {
       const response = await getTaskById(projectId, taskId);
-      console.log('Task Response:', response);
       
       if (response.data && response.data.data) {
         const taskData = response.data.data;

@@ -29,7 +29,6 @@ const ProjectDetail = () => {
   const fetchProjectData = async () => {
     try {
       const response = await getProjectById(id);
-      console.log('Project Response:', response);
       
       if (response.data && response.data.data) {
         const projectData = response.data.data;
@@ -39,7 +38,6 @@ const ProjectDetail = () => {
         try {
           // Get all tasks for this project
           const tasksResponse = await getProjectTasks(id);
-          console.log('Tasks Response:', tasksResponse);
           if (tasksResponse.data && tasksResponse.data.data) {
             // Ensure we handle both array and single object responses
             const tasksData = Array.isArray(tasksResponse.data.data) 
