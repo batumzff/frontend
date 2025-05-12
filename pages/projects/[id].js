@@ -157,7 +157,7 @@ const ProjectDetail = () => {
   return (
     <>
       <Head>
-        <title>{project?.name || 'Project Detail'} | UVW</title>
+        <title>{project?.name || 'Project Detail'} | batu</title>
       </Head>
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">

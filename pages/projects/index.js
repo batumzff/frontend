@@ -47,7 +47,7 @@ const Projects = () => {
   return (
     <>
       <Head>
-        <title>Projects | UVW</title>
+        <title>Projects | batu</title>
       </Head>
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-6">

@@ -56,7 +56,7 @@ const RegisterForm = () => {
             Create your account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Join UVW Mühendislik Task Management
+            Join Batuhan Task Management
           </p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>

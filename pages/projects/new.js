@@ -13,7 +13,7 @@ const NewProject = () => {
   return (
     <>
       <Head>
-        <title>Create New Project | UVW</title>
+        <title>Create New Project | batu</title>
       </Head>
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-2xl mx-auto">

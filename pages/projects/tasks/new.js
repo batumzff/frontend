@@ -82,7 +82,7 @@ const NewTask = () => {
   return (
     <>
       <Head>
-        <title>Create New Task | UVW</title>
+        <title>Create New Task | batu</title>
       </Head>
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-2xl mx-auto">

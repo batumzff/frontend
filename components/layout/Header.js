@@ -22,7 +22,7 @@ const Header = () => {
         <div className="w-full py-4 flex items-center justify-between border-b border-indigo-500 lg:border-none">
           <div className="flex items-center">
             <Link href="/dashboard" className="text-white text-lg font-medium">
-              UVW Mühendislik Task Management
+              Batuhan Task Management
             </Link>
             <div className="hidden ml-10 space-x-8 lg:block">
               <Link href="/dashboard" className="text-base font-medium text-white hover:text-indigo-50">
