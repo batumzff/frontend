@@ -1,6 +1,6 @@
-# UVW Mühendislik Görev Yönetimi Sistemi - Frontend
+# Mühendislik Görev Yönetimi Sistemi - Frontend
 
-Bu proje, UVW Mühendislik için geliştirilmiş görev yönetimi sisteminin frontend kısmıdır. Kullanıcı arayüzü, kimlik doğrulama ve veri görselleştirme işlevlerini sağlar.
+Bu proje, Mühendislik için geliştirilmiş görev yönetimi sisteminin frontend kısmıdır. Kullanıcı arayüzü, kimlik doğrulama ve veri görselleştirme işlevlerini sağlar.
 
 ## Canlı Demo
 
@@ -93,7 +93,6 @@ Proje, modern bir frontend mimarisine sahiptir:
 1. Repository'yi klonlayın:
    ```
    git clone <repo-url>
-   cd uvw/frontend
    ```
 
 2. Bağımlılıkları yükleyin:
